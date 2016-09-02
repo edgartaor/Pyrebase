@@ -17,7 +17,7 @@ from gcloud import storage
 from requests.packages.urllib3.contrib.appengine import is_appengine_sandbox
 from requests_toolbelt.adapters import appengine
 
-import jwt as python_jwt
+import jwt
 import Crypto.PublicKey.RSA as RSA
 import datetime
 
@@ -88,12 +88,12 @@ class Auth:
             "iss": service_account_email,
             "sub": service_account_email,
             "aud": "https://identitytoolkit.googleapis.com/google.identity.identitytoolkit.v1.IdentityToolkit",
-            "uid": uid
+            "uid": uid,
+            "exp": datetime.utcnow() + datetime.timedelta(minutes=60)
         }
         if additional_claims:
             payload["claims"] = additional_claims
-        exp = datetime.timedelta(minutes=60)
-        return python_jwt.generate_jwt(payload, private_key, "RS256", exp)
+        return jwt.encode(payload, private_key, "RS256") # Using PyJwt
 
     def sign_in_with_custom_token(self, token):
         request_ref = "https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyCustomToken?key={0}".format(self.api_key)
