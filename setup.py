@@ -17,7 +17,7 @@ setup(
     packages=find_packages(exclude=['tests']),
     install_requires=[
         'requests', 'sseclient', 'gcloud',
-        'oauth2client', 'requests_toolbelt', 'python_jwt',
+        'oauth2client', 'requests_toolbelt', 'PyJWT>=1.4.0,<2.0.0',
         'pycrypto'
     ]
 )
