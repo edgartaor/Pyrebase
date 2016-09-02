@@ -1,4 +1,5 @@
 # Pyrebase
+Note: This is a fork use PyJWT instead of python-jwt
 
 A simple python wrapper for the [Firebase API](https://firebase.google.com).
 
