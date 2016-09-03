@@ -10,3 +10,5 @@ socialbot.json
 __pycache__
 *.pyc
 pyrebase.py.orig
+*.suo
+.github
